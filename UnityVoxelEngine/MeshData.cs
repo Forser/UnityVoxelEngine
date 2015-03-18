@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace UnityVoxelEngine
 {
     public class MeshData
     {
-        public VertexPositionColor[] vertices = new VertexPositionColor[24];
+        public VertexPositionColor[] vertices;
         public List<int> triangles = new List<int>();
         public List<Vector2> uv = new List<Vector2>();
 
