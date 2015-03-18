@@ -25,7 +25,7 @@ namespace UnityVoxelEngine
             triangles.Add(vertices.Length - 4);
             triangles.Add(vertices.Length - 3);
             triangles.Add(vertices.Length - 2);
-            
+
             triangles.Add(vertices.Length - 4);
             triangles.Add(vertices.Length - 2);
             triangles.Add(vertices.Length - 1);

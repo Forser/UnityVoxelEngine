@@ -31,11 +31,6 @@ namespace UnityVoxelEngine
             return UpdateChunk();
         }
 
-        void Update()
-        {
-
-        }
-
         public Block GetBlock(int x, int y, int z)
         {
             return blocks[x, y, z];
