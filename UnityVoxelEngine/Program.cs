@@ -18,7 +18,7 @@ namespace UnityVoxelEngine
         [STAThread]
         static void Main()
         {
-            using (var game = new Chunks.game())
+            using (var game = new game())
                 game.Run();
         }
     }

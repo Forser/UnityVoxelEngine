@@ -53,7 +53,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Block.cs" />
+    <Compile Include="BlockAir.cs" />
+    <Compile Include="Chunk.cs" />
     <Compile Include="game.cs" />
+    <Compile Include="MeshData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
