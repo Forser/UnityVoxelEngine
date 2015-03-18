@@ -112,10 +112,10 @@ namespace UnityVoxelEngine
 
         protected MeshData FaceDataUp(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
-            meshData.vertices[0] = new VertexPositionColor(new Vector3(x - 0.5f, y + 0.5f, z + 0.5f), Color.Red);
-            meshData.vertices[1] = new VertexPositionColor(new Vector3(x + 0.5f, y + 0.5f, z + 0.5f), Color.Blue);
-            meshData.vertices[2] = new VertexPositionColor(new Vector3(x + 0.5f, y + 0.5f, z - 0.5f), Color.Green);
-            meshData.vertices[3] = new VertexPositionColor(new Vector3(x - 0.5f, y + 0.5f, z - 0.5f), Color.Yellow);
+            meshData.vertices[20] = new VertexPositionColor(new Vector3(x - 0.5f, y + 0.5f, z + 0.5f), Color.Red);
+            meshData.vertices[21] = new VertexPositionColor(new Vector3(x + 0.5f, y + 0.5f, z + 0.5f), Color.Blue);
+            meshData.vertices[22] = new VertexPositionColor(new Vector3(x + 0.5f, y + 0.5f, z - 0.5f), Color.Green);
+            meshData.vertices[23] = new VertexPositionColor(new Vector3(x - 0.5f, y + 0.5f, z - 0.5f), Color.Yellow);
 
             meshData.AddQuadTriangles();
 

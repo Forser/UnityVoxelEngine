@@ -51,7 +51,7 @@ namespace UnityVoxelEngine
 
             MeshData meshData = myChunk.Start();
 
-            buffer = new VertexBuffer(GraphicsDevice, typeof(VertexPositionColor), 20, BufferUsage.WriteOnly);
+            buffer = new VertexBuffer(GraphicsDevice, typeof(VertexPositionColor), 24, BufferUsage.WriteOnly);
             buffer.SetData<VertexPositionColor>(meshData.vertices);
 
             indexBuffer = new IndexBuffer(graphics.GraphicsDevice, IndexElementSize.SixteenBits, sizeof(int) * meshData.triangles.Count, BufferUsage.WriteOnly);
@@ -73,7 +73,7 @@ namespace UnityVoxelEngine
             foreach(EffectPass pass in effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
-                GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, 20, 0, 36);
+                GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, 24, 0, 36);
             }
 
             base.Draw(gameTime);
