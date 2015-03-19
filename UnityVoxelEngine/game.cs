@@ -10,6 +10,8 @@ namespace UnityVoxelEngine
         GraphicsDeviceManager graphics;
         VertexBuffer buffer; 
         IndexBuffer indexBuffer;
+        VertexPositionColor[] vertexList;
+        int[] indexList;
 
         Vector3 position;
         float rotY, rotZ, rotX;
@@ -52,15 +54,28 @@ namespace UnityVoxelEngine
 
             MeshData meshData = myChunk.Start();
 
-            buffer = new VertexBuffer(GraphicsDevice, typeof(VertexPositionColor), 24, BufferUsage.WriteOnly);
-            buffer.SetData<VertexPositionColor>(meshData.vertices);
+            vertexList = new VertexPositionColor[meshData.vertices.Count];
+            for (int i = 0; i < meshData.vertices.Count; i++ )
+            {
+                vertexList[i] = meshData.vertices[i];
+            }
 
-            indexBuffer = new IndexBuffer(graphics.GraphicsDevice, IndexElementSize.SixteenBits, sizeof(int) * meshData.triangles.Count, BufferUsage.WriteOnly);
-            indexBuffer.SetData(meshData.triangles.ToArray());
+            indexList = new int[meshData.triangles.Count];
+            for (int i = 0; i < meshData.triangles.Count; i++ )
+            {
+                indexList[i] = meshData.triangles[i];
+            }
+
+
+            buffer = new VertexBuffer(GraphicsDevice, typeof(VertexPositionColor), vertexList.Length, BufferUsage.WriteOnly);
+            buffer.SetData<VertexPositionColor>(vertexList);
+
+            indexBuffer = new IndexBuffer(graphics.GraphicsDevice, typeof(int), indexList.Length, BufferUsage.WriteOnly);
+            indexBuffer.SetData(indexList);
 
             effect.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, GraphicsDevice.Viewport.AspectRatio, 0.001f, 1000.0f);
             effect.View = Matrix.CreateLookAt(new Vector3(0, 0, -15), Vector3.Forward, Vector3.Up);
-            effect.World = Matrix.Identity * Matrix.CreateRotationY(rotY) * Matrix.CreateTranslation(position);
+            effect.World = Matrix.Identity;
             effect.VertexColorEnabled = true;
 
             
@@ -74,7 +89,8 @@ namespace UnityVoxelEngine
             foreach(EffectPass pass in effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
-                GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, 24, 0, 36);
+                //GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, meshData.vertices, 0, 10);
+                GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexList.Length, 0, indexList.Length / 3);
             }
 
             base.Draw(gameTime);

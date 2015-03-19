@@ -50,16 +50,18 @@ namespace UnityVoxelEngine
             return meshData;
         }
 
+        public List<VertexPositionColor> AddColorVertex(List<VertexPositionColor> vertices, Vector3 vector, Color color)
+        {
+            vertices.Add(new VertexPositionColor(vector, color));
+            return vertices;
+        }
+
         protected MeshData FaceDataUp(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
-            meshData.vertices[0].Position = new Vector3(x - 0.5f, y + 0.5f, z + 0.5f);
-            meshData.vertices[0].Color = Color.Purple;
-            meshData.vertices[1].Position = new Vector3(x + 0.5f, y + 0.5f, z + 0.5f);
-            meshData.vertices[1].Color = Color.Blue;
-            meshData.vertices[2].Position = new Vector3(x + 0.5f, y + 0.5f, z - 0.5f);
-            meshData.vertices[2].Color = Color.Green;
-            meshData.vertices[3].Position = new Vector3(x - 0.5f, y + 0.5f, z - 0.5f);
-            meshData.vertices[3].Color = Color.Yellow;
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z + 0.5f), Color.Purple);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z + 0.5f), Color.Blue);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z - 0.5f), Color.Green);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z - 0.5f), Color.Yellow);
                         
             meshData.AddQuadTriangles();
 
@@ -68,10 +70,10 @@ namespace UnityVoxelEngine
 
         protected MeshData FaceDataDown(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
-            meshData.vertices[4] = new VertexPositionColor(new Vector3(x - 0.5f, y - 0.5f, z - 0.5f), Color.Pink);
-            meshData.vertices[5] = new VertexPositionColor(new Vector3(x + 0.5f, y - 0.5f, z - 0.5f), Color.Blue);
-            meshData.vertices[6] = new VertexPositionColor(new Vector3(x + 0.5f, y - 0.5f, z + 0.5f), Color.Green);
-            meshData.vertices[7] = new VertexPositionColor(new Vector3(x - 0.5f, y - 0.5f, z + 0.5f), Color.Yellow);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z - 0.5f), Color.Pink);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z - 0.5f), Color.Blue);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z + 0.5f), Color.Green);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z + 0.5f), Color.Yellow);
 
             meshData.AddQuadTriangles();
 
@@ -80,10 +82,10 @@ namespace UnityVoxelEngine
 
         protected MeshData FaceDataNorth(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
-            meshData.vertices[0] = new VertexPositionColor(new Vector3(x + 0.5f, y - 0.5f, z + 0.5f), Color.Orange);
-            meshData.vertices[1] = new VertexPositionColor(new Vector3(x + 0.5f, y + 0.5f, z + 0.5f), Color.Blue);
-            meshData.vertices[2] = new VertexPositionColor(new Vector3(x - 0.5f, y + 0.5f, z + 0.5f), Color.Green);
-            meshData.vertices[3] = new VertexPositionColor(new Vector3(x - 0.5f, y - 0.5f, z + 0.5f), Color.Yellow);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z + 0.5f), Color.Orange);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z + 0.5f), Color.Blue);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z + 0.5f), Color.Green);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z + 0.5f), Color.Yellow);
 
             meshData.AddQuadTriangles();
 
@@ -92,10 +94,10 @@ namespace UnityVoxelEngine
 
         protected MeshData FaceDataEast(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
-            meshData.vertices[0] = new VertexPositionColor(new Vector3(x + 0.5f, y - 0.5f, z - 0.5f), Color.White);
-            meshData.vertices[1] = new VertexPositionColor(new Vector3(x + 0.5f, y + 0.5f, z - 0.5f), Color.Blue);
-            meshData.vertices[2] = new VertexPositionColor(new Vector3(x + 0.5f, y + 0.5f, z + 0.5f), Color.Green);
-            meshData.vertices[3] = new VertexPositionColor(new Vector3(x + 0.5f, y - 0.5f, z + 0.5f), Color.Yellow);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z - 0.5f), Color.White);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z - 0.5f), Color.Blue);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z + 0.5f), Color.Green);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z + 0.5f), Color.Yellow);
 
             meshData.AddQuadTriangles();
 
@@ -104,10 +106,10 @@ namespace UnityVoxelEngine
 
         protected MeshData FaceDataSouth(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
-            meshData.vertices[0] = new VertexPositionColor(new Vector3(x - 0.5f, y - 0.5f, z - 0.5f), Color.Brown);
-            meshData.vertices[1] = new VertexPositionColor(new Vector3(x - 0.5f, y + 0.5f, z - 0.5f), Color.Blue);
-            meshData.vertices[2] = new VertexPositionColor(new Vector3(x + 0.5f, y + 0.5f, z - 0.5f), Color.Green);
-            meshData.vertices[3] = new VertexPositionColor(new Vector3(x + 0.5f, y - 0.5f, z - 0.5f), Color.Yellow);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z - 0.5f), Color.Brown);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z - 0.5f), Color.Blue);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z - 0.5f), Color.Green);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z - 0.5f), Color.Yellow);
 
             meshData.AddQuadTriangles();
 
@@ -116,10 +118,10 @@ namespace UnityVoxelEngine
 
         protected MeshData FaceDataWest(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
-            meshData.vertices[0] = new VertexPositionColor(new Vector3(x - 0.5f, y - 0.5f, z + 0.5f), Color.Black);
-            meshData.vertices[1] = new VertexPositionColor(new Vector3(x - 0.5f, y + 0.5f, z + 0.5f), Color.Blue);
-            meshData.vertices[2] = new VertexPositionColor(new Vector3(x - 0.5f, y + 0.5f, z - 0.5f), Color.Green);
-            meshData.vertices[3] = new VertexPositionColor(new Vector3(x - 0.5f, y - 0.5f, z - 0.5f), Color.Yellow);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z + 0.5f), Color.Black);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z + 0.5f), Color.Blue);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z - 0.5f), Color.Green);
+            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z - 0.5f), Color.Yellow);
 
             meshData.AddQuadTriangles();
 
