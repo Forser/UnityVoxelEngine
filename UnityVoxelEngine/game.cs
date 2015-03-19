@@ -80,43 +80,7 @@ namespace UnityVoxelEngine
 
             MeshData meshData = myChunk.Start();
 
-            vertexList = new VertexPositionColorNormal[meshData.vertices.Count];
-            for (int i = 0; i < meshData.vertices.Count; i++ )
-            {
-                vertexList[i] = meshData.vertices[i];
-            }
-
-            indexList = new int[meshData.triangles.Count];
-            
-            for (int i = 0; i < meshData.triangles.Count; i++ )
-            {
-                indexList[i] = meshData.triangles[i];
-            }
-
-            for (int i = 0; i < vertexList.Length; i++)
-            {
-                vertexList[i].Normal = new Vector3(0, 0, 0);
-            }
-
-            for (int i = 0; i < indexList.Length / 3; i++)
-            {
-                int index1 = indexList[i * 3];
-                int index2 = indexList[i * 3 + 1];
-                int index3 = indexList[i * 3 + 2];
-
-                Vector3 side1 = vertexList[index1].Position - vertexList[index3].Position;
-                Vector3 side2 = vertexList[index1].Position - vertexList[index2].Position;
-                Vector3 normal = Vector3.Cross(side1, side2);
-
-                vertexList[index1].Normal += normal;
-                vertexList[index2].Normal += normal;
-                vertexList[index3].Normal += normal;
-            }
-
-            for (int i = 0; i < vertexList.Length; i++)
-            {
-                vertexList[i].Normal.Normalize();
-            }
+            GenerateBuffers(meshData);
 
             buffer = new VertexBuffer(GraphicsDevice, typeof(VertexPositionColorNormal), vertexList.Length, BufferUsage.WriteOnly);
             buffer.SetData<VertexPositionColorNormal>(vertexList);
@@ -151,6 +115,47 @@ namespace UnityVoxelEngine
             }
 
             base.Draw(gameTime);
+        }
+
+        private void GenerateBuffers(MeshData meshData)
+        {
+            vertexList = new VertexPositionColorNormal[meshData.vertices.Count];
+            for (int i = 0; i < meshData.vertices.Count; i++)
+            {
+                vertexList[i] = meshData.vertices[i];
+            }
+
+            indexList = new int[meshData.triangles.Count];
+
+            for (int i = 0; i < meshData.triangles.Count; i++)
+            {
+                indexList[i] = meshData.triangles[i];
+            }
+
+            for (int i = 0; i < vertexList.Length; i++)
+            {
+                vertexList[i].Normal = new Vector3(0, 0, 0);
+            }
+
+            for (int i = 0; i < indexList.Length / 3; i++)
+            {
+                int index1 = indexList[i * 3];
+                int index2 = indexList[i * 3 + 1];
+                int index3 = indexList[i * 3 + 2];
+
+                Vector3 side1 = vertexList[index1].Position - vertexList[index3].Position;
+                Vector3 side2 = vertexList[index1].Position - vertexList[index2].Position;
+                Vector3 normal = Vector3.Cross(side1, side2);
+
+                vertexList[index1].Normal += normal;
+                vertexList[index2].Normal += normal;
+                vertexList[index3].Normal += normal;
+            }
+
+            for (int i = 0; i < vertexList.Length; i++)
+            {
+                vertexList[i].Normal.Normalize();
+            }
         }
     }
 }
