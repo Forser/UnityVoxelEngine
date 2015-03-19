@@ -10,6 +10,7 @@ namespace UnityVoxelEngine
         Block[, ,] blocks;
         public static int chunkSize = 16;
         public bool update = true;
+        public short Index;
 
         public MeshData Start()
         {

@@ -48,7 +48,7 @@ namespace UnityVoxelEngine
             GraphicsDevice.Clear(Color.CornflowerBlue);
             effect = new BasicEffect(GraphicsDevice);
 
-            position = new Vector3(0.0f, 0.0f, 5.0f);
+            position = new Vector3(-2.0f, -2.0f, 2.0f);
             
             Chunk myChunk = new Chunk();
 
@@ -74,8 +74,8 @@ namespace UnityVoxelEngine
             indexBuffer.SetData(indexList);
 
             effect.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, GraphicsDevice.Viewport.AspectRatio, 0.001f, 1000.0f);
-            effect.View = Matrix.CreateLookAt(new Vector3(0, 0, -15), Vector3.Forward, Vector3.Up);
-            effect.World = Matrix.Identity;
+            effect.View = Matrix.CreateLookAt(new Vector3(0, 0, -25), Vector3.Forward, Vector3.Up);
+            effect.World = Matrix.Identity * Matrix.CreateRotationY(rotY) * Matrix.CreateTranslation(position);
             effect.VertexColorEnabled = true;
 
             
@@ -89,7 +89,6 @@ namespace UnityVoxelEngine
             foreach(EffectPass pass in effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
-                //GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleList, meshData.vertices, 0, 10);
                 GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, vertexList.Length, 0, indexList.Length / 3);
             }
 

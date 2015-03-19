@@ -21,43 +21,15 @@ namespace UnityVoxelEngine
         {
         }
 
-        public void AddQuadTriangles()
+        public void AddQuadTriangles(Chunk chunk, short i1, short i2, short i3, short i4, short i5, short i6)
         {
-            Block myBlock = new Block();
-            List<int> indices = new List<int>();
-
-            for (int j = 0; j < 3; j++)
-            {
-                for (int i = 0; i < triangles.Count; i++)
-                {
-                    Vector3 p1 = vertices[triangles[i]].Position;
-                    int p1I = (int)i++;
-                    Vector3 p2 = vertices[triangles[i]].Position;
-                    int p2I = (int)i++;
-                    Vector3 p3 = vertices[triangles[i]].Position;
-                    int p3I = (int)i;
-
-                    int a = (int)vertices.Count;
-                    vertices = myBlock.AddColorVertex(vertices, new Vector3((p1.X + p2.X) / 2,(p1.Y + p2.Y) / 2, (p1.Z + p2.Z) / 2), Color.Gray);
-
-                    int b = (int)vertices.Count;
-                    vertices = myBlock.AddColorVertex(vertices, new Vector3((p2.X + p3.X) / 2, (p2.Y + p3.Y) / 2, (p2.Z + p3.Z) / 2), Color.Gray);
-
-                    int c = (int)vertices.Count;
-                    vertices = myBlock.AddColorVertex(vertices, new Vector3((p1.X + p3.X) / 2, (p1.Y + p3.Y) / 2, (p1.Z + p3.Z) / 2), Color.Gray);
-
-                    indices.Add(triangles[p1I]); indices.Add(a); indices.Add(c);
-                    indices.Add(triangles[p2I]); indices.Add(b); indices.Add(a);
-                    indices.Add(triangles[p3I]); indices.Add(c); indices.Add(b);
-                    indices.Add(a); indices.Add(b); indices.Add(c);
-                }
-
-                triangles.Clear();
-                foreach (int index in indices)
-                {
-                    triangles.Add(index);
-                }
-            }
+            triangles.Add((short) (chunk.Index + i1));
+            triangles.Add((short) (chunk.Index + i2));
+            triangles.Add((short) (chunk.Index + i3));
+            triangles.Add((short) (chunk.Index + i4));
+            triangles.Add((short) (chunk.Index + i5));
+            triangles.Add((short) (chunk.Index + i6));
+            chunk.Index += 4;
         }
     }
 }
