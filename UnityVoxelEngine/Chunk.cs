@@ -27,7 +27,7 @@ namespace UnityVoxelEngine
                 }
             }
 
-            blocks[3, 5, 2] = new Block();
+            blocks[1, 1, 1] = new Block();
 
             return UpdateChunk();
         }

@@ -37,7 +37,7 @@ namespace UnityVoxelEngine
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             rotY += deltaTime;
-            //rotZ += deltaTime - 0.001f;
+            rotZ += deltaTime - 0.001f;
             //rotX += deltaTime + 0.001f;
 
             base.Update(gameTime);
@@ -48,7 +48,7 @@ namespace UnityVoxelEngine
             GraphicsDevice.Clear(Color.CornflowerBlue);
             effect = new BasicEffect(GraphicsDevice);
 
-            position = new Vector3(-2.0f, -2.0f, 2.0f);
+            position = new Vector3(-0.5f, 0, -5.5f);
             
             Chunk myChunk = new Chunk();
 
@@ -73,9 +73,10 @@ namespace UnityVoxelEngine
             indexBuffer = new IndexBuffer(graphics.GraphicsDevice, typeof(int), indexList.Length, BufferUsage.WriteOnly);
             indexBuffer.SetData(indexList);
 
-            effect.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, GraphicsDevice.Viewport.AspectRatio, 0.001f, 1000.0f);
-            effect.View = Matrix.CreateLookAt(new Vector3(0, 0, -25), Vector3.Forward, Vector3.Up);
-            effect.World = Matrix.Identity * Matrix.CreateRotationY(rotY) * Matrix.CreateTranslation(position);
+            effect.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, GraphicsDevice.Viewport.AspectRatio, 0.01f, 1000.0f);
+            effect.View = Matrix.CreateLookAt(new Vector3(0, 0, 0), Vector3.Forward, Vector3.Up);
+            effect.World = Matrix.Identity * Matrix.CreateRotationY(rotY) * Matrix.CreateRotationZ(rotZ) * Matrix.CreateTranslation(position);
+            //effect.World = Matrix.Identity;
             effect.VertexColorEnabled = true;
 
             
