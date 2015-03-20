@@ -5,14 +5,15 @@ using System.Text;
 
 namespace UnityVoxelEngine
 {
-    public class BlockAir : Block
+    public class BlockDirt : Block
     {
-        public BlockAir() : base()
-        {}
+        public BlockDirt()
+            : base()
+        { }
 
         public override MeshData Blockdata(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
- 	            return meshData;
+            return meshData;
         }
 
         public override bool IsSolid(Block.Direction direction)

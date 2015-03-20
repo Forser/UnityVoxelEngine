@@ -55,7 +55,9 @@
   <ItemGroup>
     <Compile Include="Block.cs" />
     <Compile Include="BlockAir.cs" />
+    <Compile Include="BlockDirt.cs" />
     <Compile Include="Chunk.cs" />
+    <Content Include="Content\OurHLSLfile.fx" />
     <Compile Include="game.cs" />
     <Compile Include="MeshData.cs" />
     <Compile Include="Program.cs" />
@@ -69,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\terrain.png" />
     <Content Include="Content\tiles.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
@@ -96,6 +99,10 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\OurHLSLfile.xnb" />
+    <None Include="Content\terrain.xnb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

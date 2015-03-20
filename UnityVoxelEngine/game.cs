@@ -8,33 +8,36 @@ namespace UnityVoxelEngine
     public class game : Game
     {
         BasicEffect effect;
-        GraphicsDeviceManager graphics;
-        VertexBuffer buffer; 
-        IndexBuffer indexBuffer;
-        VertexPositionColorNormal[] vertexList;
-        int[] indexList;
-
-        Vector3 position;
         float rotY, rotZ;
+        GraphicsDeviceManager graphics;
+        IndexBuffer indexBuffer;
+        int[] indexList;
+        Texture2D texture;
+        Vector3 position;
+        VertexBuffer buffer; 
+        VertexPositionColorNormal[] vertexList;
 
         public struct VertexPositionColorNormal : IVertexType
         {
             public Vector3 Position;
             public Color Color;
             public Vector3 Normal;
+            public Vector2 TextureCoordinate;
 
-            public VertexPositionColorNormal(Vector3 vector, Color color, Vector3 normal)
+            public VertexPositionColorNormal(Vector3 vector, Color color, Vector3 normal, Vector2 textureCoordinate)
             {
                 Position = vector;
                 Color = color;
                 Normal = normal;
+                TextureCoordinate = textureCoordinate;
             }
 
             public readonly static VertexDeclaration VertexDeclaration = new VertexDeclaration
             (
                 new VertexElement(0, VertexElementFormat.Vector3, VertexElementUsage.Position, 0),
                 new VertexElement(sizeof(float) * 3, VertexElementFormat.Color, VertexElementUsage.Color, 0),
-                new VertexElement(sizeof(float) * 3 + 4, VertexElementFormat.Vector3, VertexElementUsage.Normal, 0)
+                new VertexElement(sizeof(float) * 3 + 4, VertexElementFormat.Vector3, VertexElementUsage.Normal, 0),
+                new VertexElement(sizeof(float) * 3, VertexElementFormat.HalfVector2, VertexElementUsage.TextureCoordinate, 0)
             );
 
             VertexDeclaration IVertexType.VertexDeclaration
@@ -56,7 +59,7 @@ namespace UnityVoxelEngine
 
         protected override void LoadContent()
         {
-           
+          
         }
 
         protected override void Update(GameTime gameTime)
@@ -93,8 +96,7 @@ namespace UnityVoxelEngine
             effect.World = Matrix.Identity * Matrix.CreateRotationY(rotY) * Matrix.CreateRotationX(rotZ) * Matrix.CreateTranslation(position);
             //effect.World = Matrix.Identity;
             effect.VertexColorEnabled = true;
-
-            
+             
             GraphicsDevice.SetVertexBuffer(buffer);
             GraphicsDevice.Indices = indexBuffer;
 
