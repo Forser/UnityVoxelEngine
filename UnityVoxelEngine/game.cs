@@ -15,36 +15,7 @@ namespace UnityVoxelEngine
         Texture2D texture;
         Vector3 position;
         VertexBuffer buffer; 
-        VertexPositionColorNormal[] vertexList;
-
-        public struct VertexPositionColorNormal : IVertexType
-        {
-            public Vector3 Position;
-            public Color Color;
-            public Vector3 Normal;
-            public Vector2 TextureCoordinate;
-
-            public VertexPositionColorNormal(Vector3 vector, Color color, Vector3 normal, Vector2 textureCoordinate)
-            {
-                Position = vector;
-                Color = color;
-                Normal = normal;
-                TextureCoordinate = textureCoordinate;
-            }
-
-            public readonly static VertexDeclaration VertexDeclaration = new VertexDeclaration
-            (
-                new VertexElement(0, VertexElementFormat.Vector3, VertexElementUsage.Position, 0),
-                new VertexElement(sizeof(float) * 3, VertexElementFormat.Color, VertexElementUsage.Color, 0),
-                new VertexElement(sizeof(float) * 3, VertexElementFormat.Vector3, VertexElementUsage.Normal, 0),
-                new VertexElement(sizeof(float) * 3, VertexElementFormat.HalfVector2, VertexElementUsage.TextureCoordinate, 0)
-            );
-
-            VertexDeclaration IVertexType.VertexDeclaration
-            {
-                get { return VertexPositionColorNormal.VertexDeclaration; }
-            }
-        }
+        VertexPositionNormalTexture[] vertexList;
 
         public game() : base()
         {
@@ -85,8 +56,8 @@ namespace UnityVoxelEngine
 
             GenerateBuffers(meshData);
 
-            buffer = new VertexBuffer(GraphicsDevice, typeof(VertexPositionColorNormal), vertexList.Length, BufferUsage.WriteOnly);
-            buffer.SetData<VertexPositionColorNormal>(vertexList);
+            buffer = new VertexBuffer(GraphicsDevice, VertexPositionNormalTexture.VertexDeclaration, vertexList.Length, BufferUsage.WriteOnly);
+            buffer.SetData(vertexList);
 
             indexBuffer = new IndexBuffer(graphics.GraphicsDevice, typeof(int), indexList.Length, BufferUsage.WriteOnly);
             indexBuffer.SetData(indexList);
@@ -113,7 +84,7 @@ namespace UnityVoxelEngine
                 //effect.DirectionalLight0.Enabled = true;
 
                 pass.Apply();
-                GraphicsDevice.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertexList, 0, vertexList.Length, indexList, 0, indexList.Length / 3, VertexPositionColorNormal.VertexDeclaration);
+                GraphicsDevice.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertexList, 0, vertexList.Length, indexList, 0, indexList.Length / 3);
             }
 
             base.Draw(gameTime);
@@ -121,7 +92,7 @@ namespace UnityVoxelEngine
 
         private void GenerateBuffers(MeshData meshData)
         {
-            vertexList = new VertexPositionColorNormal[meshData.vertices.Count];
+            vertexList = new VertexPositionNormalTexture[meshData.vertices.Count];
             for (int i = 0; i < meshData.vertices.Count; i++)
             {
                 vertexList[i] = meshData.vertices[i];
@@ -136,7 +107,7 @@ namespace UnityVoxelEngine
 
             for (int i = 0; i < vertexList.Length; i++)
             {
-                vertexList[i].Normal = new Vector3(0, 0, 0);
+                vertexList[i].Normal = new Vector3(0,0,0);
             }
 
             for (int i = 0; i < indexList.Length / 3; i++)

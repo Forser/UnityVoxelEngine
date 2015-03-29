@@ -10,7 +10,7 @@ namespace UnityVoxelEngine
 {
     public class MeshData
     {
-        public List<UnityVoxelEngine.game.VertexPositionColorNormal> vertices = new List<UnityVoxelEngine.game.VertexPositionColorNormal>();
+        public List<VertexPositionNormalTexture> vertices = new List<VertexPositionNormalTexture>();
         public List<int> triangles = new List<int>();
         public List<Vector2> uv = new List<Vector2>();
 
