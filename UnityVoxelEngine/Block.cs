@@ -42,7 +42,7 @@ namespace UnityVoxelEngine
 
         public virtual MeshData Blockdata(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
-            meshData.useRenderDataForCol = true;
+            //meshData.useRenderDataForCol = true;
 
             if (!chunk.GetBlock(x, y + 1, z).IsSolid(Direction.down))
             {
@@ -84,10 +84,10 @@ namespace UnityVoxelEngine
 
         protected MeshData FaceDataUp(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
-            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z + 0.5f), Color.Purple, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
-            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z + 0.5f), Color.Blue, new Vector3(0, 0, 0), new Vector2(1.0f, 0.0f));
-            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z + 0.5f), Color.Green, new Vector3(0, 0, 0), new Vector2(0.0f, 1.0f));
-            meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z + 0.5f), Color.Yellow, new Vector3(0, 0, 0), new Vector2(1.0f, 1.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z + 0.5f), Color.Purple, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z + 0.5f), Color.Blue, new Vector3(0, 0, 0), new Vector2(1.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z + 0.5f), Color.Green, new Vector3(0, 0, 0), new Vector2(0.0f, 1.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z + 0.5f), Color.Yellow, new Vector3(0, 0, 0), new Vector2(1.0f, 1.0f));
 
             meshData.AddVertex(new Vector3(x - 0.5f, y - 0.5f, z + 0.5f));
             meshData.AddVertex(new Vector3(x + 0.5f, y - 0.5f, z + 0.5f));
@@ -103,10 +103,10 @@ namespace UnityVoxelEngine
 
         protected MeshData FaceDataDown(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z - 0.5f), Color.Pink, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z - 0.5f), Color.Blue, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z - 0.5f), Color.Green, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z - 0.5f), Color.Yellow, new Vector3(0, 0, 0));
+            AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z - 0.5f), Color.Pink, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z - 0.5f), Color.Blue, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z - 0.5f), Color.Green, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z - 0.5f), Color.Yellow, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
 
             meshData.AddVertex(new Vector3(x - 0.5f, y - 0.5f, z - 0.5f));
             meshData.AddVertex(new Vector3(x - 0.5f, y + 0.5f, z - 0.5f));
@@ -122,10 +122,10 @@ namespace UnityVoxelEngine
 
         protected MeshData FaceDataNorth(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z - 0.5f), Color.Orange, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z + 0.5f), Color.Blue, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z + 0.5f), Color.Green, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z - 0.5f), Color.Yellow, new Vector3(0, 0, 0));
+            AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z - 0.5f), Color.Orange, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z + 0.5f), Color.Blue, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z + 0.5f), Color.Green, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z - 0.5f), Color.Yellow, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
 
             meshData.AddVertex(new Vector3(x - 0.5f, y + 0.5f, z - 0.5f));
             meshData.AddVertex(new Vector3(x - 0.5f, y + 0.5f, z + 0.5f));
@@ -140,10 +140,10 @@ namespace UnityVoxelEngine
         }
         protected MeshData FaceDataSouth(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z - 0.5f), Color.Brown, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z - 0.5f), Color.Blue, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z + 0.5f), Color.Green, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z + 0.5f), Color.Yellow, new Vector3(0, 0, 0));
+            AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z - 0.5f), Color.Brown, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z - 0.5f), Color.Blue, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z + 0.5f), Color.Green, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z + 0.5f), Color.Yellow, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
 
             meshData.AddVertex(new Vector3(x - 0.5f, y - 0.5f, z - 0.5f));
             meshData.AddVertex(new Vector3(x + 0.5f, y - 0.5f, z - 0.5f));
@@ -159,10 +159,10 @@ namespace UnityVoxelEngine
 
         protected MeshData FaceDataEast(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z - 0.5f), Color.White, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z - 0.5f), Color.Blue, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z + 0.5f), Color.Green, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z + 0.5f), Color.Yellow, new Vector3(0, 0, 0));
+            AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z - 0.5f), Color.White, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z - 0.5f), Color.Blue, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y + 0.5f, z + 0.5f), Color.Green, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x + 0.5f, y - 0.5f, z + 0.5f), Color.Yellow, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
 
             meshData.AddVertex(new Vector3(x + 0.5f, y - 0.5f, z - 0.5f));
             meshData.AddVertex(new Vector3(x + 0.5f, y + 0.5f, z - 0.5f));
@@ -178,10 +178,10 @@ namespace UnityVoxelEngine
 
         protected MeshData FaceDataWest(Chunk chunk, int x, int y, int z, MeshData meshData)
         {
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z - 0.5f), Color.Black, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z + 0.5f), Color.Blue, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z + 0.5f), Color.Green, new Vector3(0, 0, 0));
-            //meshData.vertices = AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z - 0.5f), Color.Yellow, new Vector3(0, 0, 0));
+            AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z - 0.5f), Color.Black, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y - 0.5f, z + 0.5f), Color.Blue, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z + 0.5f), Color.Green, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
+            AddColorVertex(meshData.vertices, new Vector3(x - 0.5f, y + 0.5f, z - 0.5f), Color.Yellow, new Vector3(0, 0, 0), new Vector2(0.0f, 0.0f));
 
             meshData.AddVertex(new Vector3(x - 0.5f, y - 0.5f, z - 0.5f));
             meshData.AddVertex(new Vector3(x - 0.5f, y - 0.5f, z + 0.5f));

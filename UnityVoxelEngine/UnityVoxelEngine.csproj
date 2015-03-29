@@ -57,7 +57,6 @@
     <Compile Include="BlockAir.cs" />
     <Compile Include="BlockDirt.cs" />
     <Compile Include="Chunk.cs" />
-    <Content Include="Content\OurHLSLfile.fx" />
     <Compile Include="game.cs" />
     <Compile Include="MeshData.cs" />
     <Compile Include="Program.cs" />
@@ -101,7 +100,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\OurHLSLfile.xnb" />
     <None Include="Content\terrain.xnb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
